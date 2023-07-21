@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePacketDataRequest;
 use App\Models\PacketData;
 use App\Models\PacketT2Data;
 use App\Services\GetFormattedPacketData;
 use App\Services\GetFormattedT2PacketData;
-use Illuminate\Http\Request;
 
 class PacketDataController extends Controller
 {
@@ -21,7 +21,7 @@ class PacketDataController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, GetFormattedPacketData $formattedPacketData)
+    public function store(StorePacketDataRequest $request, GetFormattedPacketData $formattedPacketData)
     {
         try {
             $formatted_data = $formattedPacketData->handle($request->packet);
@@ -35,7 +35,7 @@ class PacketDataController extends Controller
         }
     }
 
-    public function storeT2PacketData(Request $request, GetFormattedT2PacketData $packetData)
+    public function storeT2PacketData(StorePacketDataRequest $request, GetFormattedT2PacketData $packetData)
     {
         try {
             $formatted_data = $packetData->handle($request->packet);
